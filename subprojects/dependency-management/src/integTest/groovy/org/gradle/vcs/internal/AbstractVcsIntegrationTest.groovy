@@ -46,7 +46,11 @@ abstract class AbstractVcsIntegrationTest extends AbstractIntegrationSpec {
     }
 
     TestFile checkoutDir(String repoName, String versionId, String repoId) {
-        def hashedRepo = HashUtil.createCompactMD5(repoId)
+        def hashedRepo = hashRepositoryId(repoId)
         file(".gradle/vcsWorkingDirs/${hashedRepo}/${versionId}/${repoName}")
+    }
+
+    String hashRepositoryId(String repoId) {
+        HashUtil.createCompactMD5(repoId)
     }
 }
